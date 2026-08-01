@@ -1,0 +1,150 @@
+.mas-seccion {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+.mas-seccion h3 {
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  color: var(--color-marino);
+}
+
+/* Ajustes */
+.fila-ajuste {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.fila-ajuste span { font-size: 0.88rem; color: var(--color-text); }
+
+.toggle-switch {
+  width: 44px; height: 26px;
+  background: var(--color-border);
+  border-radius: 20px;
+  position: relative;
+  transition: background var(--dur-media);
+}
+.toggle-switch::after {
+  content: "";
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform var(--dur-media) var(--ease-avion);
+}
+.toggle-switch.activo { background: var(--color-acento); }
+.toggle-switch.activo::after { transform: translateX(18px); }
+
+#btn-instalar-app {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radio-sm);
+  color: var(--color-marino);
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-top: 6px;
+}
+
+/* Mis pedidos */
+.fila-pedido-local {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--color-bg-alt);
+  border-radius: var(--radio-sm);
+  margin-bottom: 8px;
+  text-decoration: none;
+  color: var(--color-marino);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* Galería inspiración */
+.galeria-inspiracion {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.galeria-inspiracion .galeria-item { aspect-ratio: 1; }
+
+/* Testimonios scroll horizontal */
+.testimonios-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  margin: 0 -20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.testimonio-card {
+  flex-shrink: 0;
+  width: 220px;
+  background: var(--color-bg-alt);
+  border-radius: var(--radio-sm);
+  padding: 14px;
+}
+.testimonio-estrellas { color: var(--color-acento); font-size: 0.8rem; margin-bottom: 6px; }
+.testimonio-texto { font-size: 0.8rem; color: var(--color-text); line-height: 1.5; }
+.testimonio-nombre { font-size: 0.72rem; color: var(--color-text-soft); margin-top: 8px; font-weight: 600; }
+
+/* FAQ acordeón */
+.faq-item {
+  border-bottom: 1px dashed var(--color-border);
+}
+.faq-pregunta {
+  width: 100%;
+  text-align: left;
+  padding: 12px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.faq-pregunta svg { transition: transform var(--dur-media); flex-shrink: 0; }
+.faq-item.abierto .faq-pregunta svg { transform: rotate(45deg); }
+.faq-respuesta {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--dur-media);
+  font-size: 0.8rem;
+  color: var(--color-text-soft);
+  line-height: 1.5;
+}
+.faq-item.abierto .faq-respuesta {
+  max-height: 200px;
+  padding-bottom: 12px;
+}
+
+/* Contacto */
+.acciones-contacto {
+  display: flex;
+  gap: 10px;
+}
+
+.contador-mas-box {
+  text-align: center;
+  padding: 6px 0 4px;
+}
+.contador-mas-box strong {
+  display: block;
+  font-family: var(--font-titulos);
+  font-size: 1.6rem;
+  color: var(--color-acento);
+}
+
+.version-app {
+  text-align: center;
+  padding: 20px;
+  color: var(--color-text-soft);
+  font-size: 0.7rem;
+}

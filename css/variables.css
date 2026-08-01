@@ -1,0 +1,56 @@
+/* ===== VUELO CREATIVO — Variables de marca (v2) ===== */
+:root {
+  /* Paleta: azul marino + verde + blanco */
+  --color-bg: #F6FAF9;
+  --color-bg-alt: #EAF3F1;
+  --color-surface: #FFFFFF;
+  --color-text: #14263D;
+  --color-text-soft: #6B7C8C;
+  --color-border: #DCE7E4;
+
+  /* Marino (identidad / headers) */
+  --color-marino: #16283F;
+  --color-marino-suave: #2C4460;
+
+  /* Color fuerte reservado SOLO para el dato crítico (precio/total) */
+  --color-acento: #2E8B7F;
+  --color-acento-suave: #6FBDAF;
+
+  /* Estados */
+  --color-exito: #2E8B7F;
+  --color-alerta: #D9A441;
+  --color-error: #C6693B;
+
+  /* Modo oscuro */
+  --dark-bg: #0F1C2E;
+  --dark-bg-alt: #16283F;
+  --dark-surface: #1C3049;
+  --dark-text: #EAF3F1;
+  --dark-text-soft: #9BB0C2;
+  --dark-border: #29405C;
+
+  /* Tipografía — amigable y dinámica */
+  --font-logo: 'Baloo 2', 'Quicksand', sans-serif;
+  --font-titulos: 'Baloo 2', sans-serif;
+  --font-texto: 'Inter', sans-serif;
+
+  /* Layout */
+  --marco-max-width: 430px;
+  --radio: 20px;
+  --radio-sm: 12px;
+  --sombra: 0 6px 24px rgba(20, 38, 61, 0.08);
+
+  /* Animación */
+  --ease-avion: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-rapida: 180ms;
+  --dur-media: 350ms;
+}
+
+[data-theme="dark"] {
+  --color-bg: var(--dark-bg);
+  --color-bg-alt: var(--dark-bg-alt);
+  --color-surface: var(--dark-surface);
+  --color-text: var(--dark-text);
+  --color-text-soft: var(--dark-text-soft);
+  --color-border: var(--dark-border);
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vuelo Creativo — Más</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#16283F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/animaciones.css">
+<link rel="stylesheet" href="css/mas.css">
+</head>
+<body>
+
+<div id="app-frame">
+  <header id="app-header"></header>
+
+  <main id="app-content">
+
+    <!-- Contador social -->
+    <div class="mas-seccion contador-mas-box" style="border-top:none;">
+      <strong id="contador-mas">120+</strong>
+      <span class="texto-suave">cuadros entregados con cariño</span>
+    </div>
+
+    <!-- Mis pedidos -->
+    <section class="mas-seccion">
+      <h3>Mis pedidos</h3>
+      <div id="lista-mis-pedidos"></div>
+    </section>
+
+    <!-- Inspiración -->
+    <section class="mas-seccion">
+      <h3>Inspiración</h3>
+      <p class="texto-suave" style="margin-bottom:10px;">Algunos cuadros que ya entregamos</p>
+      <div class="galeria-inspiracion">
+        <div class="galeria-item"></div>
+        <div class="galeria-item"></div>
+        <div class="galeria-item"></div>
+        <div class="galeria-item"></div>
+        <div class="galeria-item"></div>
+        <div class="galeria-item"></div>
+      </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="mas-seccion">
+      <h3>Lo que dicen nuestros clientes</h3>
+      <div class="testimonios-scroll">
+        <div class="testimonio-card">
+          <div class="testimonio-estrellas">★★★★★</div>
+          <p class="testimonio-texto">Quedé sorprendida con el detalle, se nota el cariño en cada hilo.</p>
+          <p class="testimonio-nombre">— Marisol T.</p>
+        </div>
+        <div class="testimonio-card">
+          <div class="testimonio-estrellas">★★★★★</div>
+          <p class="testimonio-texto">Llegó justo a tiempo para el aniversario, superó lo que imaginé.</p>
+          <p class="testimonio-nombre">— Renzo A.</p>
+        </div>
+        <div class="testimonio-card">
+          <div class="testimonio-estrellas">★★★★★</div>
+          <p class="testimonio-texto">Pedí uno personalizado y pude ver cómo iba quedando, muy buena comunicación.</p>
+          <p class="testimonio-nombre">— Kiara V.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Preguntas frecuentes -->
+    <section class="mas-seccion">
+      <h3>Preguntas frecuentes</h3>
+      <div class="faq-item">
+        <button class="faq-pregunta" onclick="alternarFAQ(this)">
+          ¿Cuánto demora un pedido personalizado?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-respuesta">Depende del tamaño y la fecha que elijas, pero el mínimo es de 2 días desde que confirmas el pedido.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pregunta" onclick="alternarFAQ(this)">
+          ¿Qué métodos de pago aceptan?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-respuesta">Yape, transferencia BCP o efectivo contra entrega, como prefieras.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-pregunta" onclick="alternarFAQ(this)">
+          ¿Puedo hacer cambios después de confirmar?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-respuesta">Sí, escríbenos por WhatsApp lo antes posible y con gusto lo ajustamos si el pedido aún no entra en elaboración.</div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="mas-seccion">
+      <h3>¿Tienes dudas?</h3>
+      <div class="acciones-contacto">
+        <button class="btn-primario" onclick="contactarNegocio()">Escribir por WhatsApp</button>
+        <button class="btn-secundario" onclick="compartirApp()">Compartir</button>
+      </div>
+    </section>
+
+    <!-- Ajustes -->
+    <section class="mas-seccion">
+      <h3>Ajustes</h3>
+      <div class="fila-ajuste">
+        <span>Modo oscuro</span>
+        <button class="toggle-switch" id="toggle-tema" onclick="alternarTemaUI()" aria-label="Modo oscuro"></button>
+      </div>
+      <button id="btn-instalar-app" onclick="instalarApp()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l4-4m-4 4l-4-4"/><path d="M4 17v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg>
+        Instalar Vuelo Creativo en tu celular
+      </button>
+    </section>
+
+    <p class="version-app">Vuelo Creativo · v1.0</p>
+  </main>
+
+  <nav id="bottom-nav"></nav>
+  <div id="mascota"></div>
+  <div id="toast"></div>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script>
+  try { firebase.initializeApp(firebaseConfig); var db = firebase.firestore(); } catch (e) { console.warn("Configura Firebase en js/firebase-config.js"); }
+</script>
+
+<script src="js/utils/theme.js"></script>
+<script src="js/utils/helpers.js"></script>
+<script src="js/utils/mis-pedidos.js"></script>
+<script src="js/components/icono-marca.js"></script>
+<script src="js/components/header.js"></script>
+<script src="js/components/bottom-nav.js"></script>
+<script src="js/components/mascota.js"></script>
+<script src="js/data/negocio-config.js"></script>
+<script src="js/modules/mas.js"></script>
+<script>
+  function alternarTemaUI() {
+    alternarTema();
+    document.getElementById("toggle-tema").classList.toggle("activo");
+    vibrar(10);
+  }
+
+  renderHeader({ titulo: "Más" });
+  renderBottomNav("mas");
+  if (document.documentElement.getAttribute("data-theme") === "dark") {
+    document.getElementById("toggle-tema").classList.add("activo");
+  }
+  renderMisPedidos();
+  cargarContadorGlobal();
+  iniciarMascota([
+    "Aquí encuentras tus pedidos guardados",
+    "Instala la app para acceder más rápido la próxima vez"
+  ]);
+</script>
+</body>
+</html>

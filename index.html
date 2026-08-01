@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vuelo Creativo</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#16283F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/animaciones.css">
+<link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+
+<!-- Splash screen -->
+<div id="splash">
+  <div class="splash-avion" id="splash-avion"></div>
+  <p class="splash-marca">Vuelo Creativo</p>
+</div>
+
+<div id="app-frame">
+  <main id="app-content" style="padding-bottom:0;">
+
+    <!-- 1. HERO -->
+    <section class="landing-hero">
+      <div class="hero-avion-wrap" id="hero-avion"></div>
+      <h1 class="logo-texto hero-titulo">Vuelo Creativo</h1>
+      <p class="hero-tagline">Cuadros decorativos en hilorama, hechos a tu medida</p>
+      <button class="btn-primario hero-btn" onclick="location.href='app.html'">Empezar</button>
+    </section>
+
+    <!-- 2. QUÉ HACEMOS -->
+    <section class="landing-seccion reveal">
+      <span class="etiqueta-seccion">Qué hacemos</span>
+      <h2>Arte en hilo, hecho para ti</h2>
+      <p class="texto-suave">Diseñamos cada cuadro a mano con la técnica de hilorama. Tú eliges el tamaño, el color y el diseño; nosotros le damos forma.</p>
+      <div class="galeria-mini">
+        <div class="galeria-item"></div>
+        <div class="galeria-item"></div>
+        <div class="galeria-item"></div>
+      </div>
+    </section>
+
+    <!-- 3. CÓMO FUNCIONA -->
+    <section class="landing-seccion reveal">
+      <span class="etiqueta-seccion">Proceso</span>
+      <h2>Cómo funciona</h2>
+      <div class="pasos">
+        <div class="paso">
+          <span class="paso-icono" data-icono="disenar"></span>
+          <div>
+            <p class="paso-titulo">Personaliza</p>
+            <p class="texto-suave">Elige tamaño, color y tu diseño ideal</p>
+          </div>
+        </div>
+        <div class="paso">
+          <span class="paso-icono" data-icono="pagar"></span>
+          <div>
+            <p class="paso-titulo">Paga</p>
+            <p class="texto-suave">Yape, BCP o efectivo, como prefieras</p>
+          </div>
+        </div>
+        <div class="paso">
+          <span class="paso-icono" data-icono="entregar"></span>
+          <div>
+            <p class="paso-titulo">Recibe</p>
+            <p class="texto-suave">Sigue tu pedido hasta que llegue a ti</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. POR QUÉ ELEGIRNOS -->
+    <section class="landing-seccion reveal">
+      <span class="etiqueta-seccion">Por qué Vuelo Creativo</span>
+      <div class="beneficios">
+        <div class="beneficio">
+          <span class="beneficio-icono" data-icono="unico"></span>
+          <p>Diseños únicos, hechos a mano</p>
+        </div>
+        <div class="beneficio">
+          <span class="beneficio-icono" data-icono="tiempo"></span>
+          <p>Entrega a tiempo, siempre</p>
+        </div>
+        <div class="beneficio">
+          <span class="beneficio-icono" data-icono="seguimiento"></span>
+          <p>Rastrea tu pedido en vivo</p>
+        </div>
+      </div>
+      <p class="contador-social"><strong id="contador-cuadros">120+</strong> cuadros entregados con cariño</p>
+    </section>
+
+    <!-- 5. CTA FINAL -->
+    <section class="landing-seccion landing-cta reveal">
+      <h2 class="cta-titulo">¿Listo para crear el tuyo?</h2>
+      <button class="btn-primario" onclick="location.href='app.html'">Comenzar mi pedido</button>
+    </section>
+
+  </main>
+</div>
+
+<script src="js/components/icono-marca.js"></script>
+<script src="js/utils/helpers.js"></script>
+<script src="js/utils/iconos-landing.js"></script>
+<script>
+  document.getElementById("splash-avion").innerHTML = iconoAvionVC({ tamano: 58, color: "#2E8B7F", conEstela: true });
+  document.getElementById("hero-avion").innerHTML = iconoAvionVC({ tamano: 64, color: "#2E8B7F", conEstela: true });
+  pintarIconosLanding();
+  ocultarSplash();
+  activarRevelado();
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vuelo Creativo — Personalizar</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#16283F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/animaciones.css">
+<link rel="stylesheet" href="css/catalogo.css">
+<link rel="stylesheet" href="css/personalizar.css">
+</head>
+<body>
+
+<div id="app-frame">
+  <header id="app-header"></header>
+
+  <main id="app-content" style="padding-bottom:0;">
+
+    <div id="canvas-3d-wrap">
+      <div id="canvas-3d"></div>
+      <p class="hint-3d">Desliza el dedo sobre el cuadro para girarlo</p>
+    </div>
+
+    <form class="form-personalizar" onsubmit="event.preventDefault();">
+
+      <div class="precio-vivo-box">
+        <span class="texto-suave">Precio estimado</span>
+        <span class="dato-critico" id="precio-vivo">S/ 45.00</span>
+      </div>
+
+      <div class="seccion-form">
+        <label class="titulo-campo">Tamaño</label>
+        <div class="swatches" id="opciones-tamano"></div>
+      </div>
+
+      <div class="seccion-form">
+        <label class="titulo-campo">Presentación</label>
+        <div class="opciones-presentacion" id="opciones-presentacion"></div>
+      </div>
+
+      <div class="seccion-form">
+        <label class="titulo-campo">Ocasión o evento</label>
+        <select class="select-ocasion" id="p-ocasion">
+          <option>Cumpleaños</option>
+          <option>Aniversario</option>
+          <option>Baby shower</option>
+          <option>Boda</option>
+          <option>Decoración del hogar</option>
+          <option>Otro</option>
+        </select>
+      </div>
+
+      <div class="seccion-form">
+        <label class="titulo-campo">Color del cuadro</label>
+        <div class="swatches" id="swatches-color"></div>
+      </div>
+
+      <div class="seccion-form">
+        <label class="titulo-campo">Iniciales o texto del patrón</label>
+        <input type="text" class="input-texto" id="p-iniciales" maxlength="6" value="V&C" oninput="actualizarIniciales(this.value)">
+      </div>
+
+      <div class="seccion-form">
+        <label class="titulo-campo">¿Qué dibujo quieres en el hilorama?</label>
+        <input type="text" class="input-texto" id="p-dibujo" placeholder="Ej: pareja abrazada, estilo minimalista">
+      </div>
+
+      <div class="seccion-form">
+        <label class="titulo-campo">Fecha de entrega</label>
+        <input type="date" class="input-fecha" id="p-fecha" required>
+      </div>
+
+      <button type="button" class="btn-primario" onclick="abrirCheckoutPersonalizado()">Continuar con el pedido</button>
+    </form>
+  </main>
+
+  <div id="toast"></div>
+</div>
+
+<!-- ===== SHEET: Checkout ===== -->
+<div class="sheet-overlay" id="sheet-checkout-overlay" onclick="cerrarSheet('sheet-checkout')"></div>
+<div class="sheet" id="sheet-checkout">
+  <div class="sheet-handle"></div>
+  <h3>Datos de entrega</h3>
+  <form id="form-checkout" onsubmit="confirmarPedidoPersonalizado(event)" style="margin-top:14px;">
+    <div class="campo">
+      <label>Nombre completo</label>
+      <input type="text" id="checkout-nombre" required>
+    </div>
+    <div class="campo">
+      <label>WhatsApp</label>
+      <input type="tel" id="checkout-whatsapp" placeholder="9XXXXXXXX" required>
+    </div>
+    <div class="campo">
+      <label>Dirección o referencia de entrega</label>
+      <input type="text" id="checkout-direccion">
+    </div>
+    <div class="campo">
+      <label>Fecha de entrega</label>
+      <input type="date" id="checkout-fecha" required>
+    </div>
+
+    <label style="display:block; font-size:0.8rem; font-weight:600; color:var(--color-marino); margin-bottom:8px;">Método de pago</label>
+    <div class="metodos-pago">
+      <button type="button" class="metodo-pago" id="metodo-yape" onclick="seleccionarMetodoPago('yape')">Yape</button>
+      <button type="button" class="metodo-pago" id="metodo-bcp" onclick="seleccionarMetodoPago('bcp')">BCP</button>
+      <button type="button" class="metodo-pago" id="metodo-efectivo" onclick="seleccionarMetodoPago('efectivo')">Efectivo</button>
+    </div>
+    <input type="hidden" id="checkout-metodo" value="">
+
+    <div id="qr-pago">
+      <div id="qr-imagen">QR</div>
+      <p class="texto-suave">Escanea y paga el total del pedido</p>
+    </div>
+
+    <div class="campo">
+      <label>Código de operación / N° de boleta</label>
+      <input type="text" id="checkout-operacion" placeholder="Ej: 00123456">
+    </div>
+
+    <button type="submit" class="btn-primario">Confirmar pedido</button>
+  </form>
+</div>
+
+<!-- ===== SHEET: Confirmación ===== -->
+<div class="sheet-overlay" id="sheet-confirmacion-overlay"></div>
+<div class="sheet" id="sheet-confirmacion">
+  <div class="sheet-handle"></div>
+  <div class="confirmacion-icono" id="confirmacion-icono"></div>
+  <h3 style="text-align:center;">¡Pedido confirmado!</h3>
+  <p class="texto-suave" style="text-align:center; margin-top:6px;">Tu pedido está en revisión. Te avisaremos cuando sea aceptado.</p>
+  <div class="confirmacion-codigo-box">
+    <p class="texto-suave">Código de seguimiento</p>
+    <p id="confirmacion-codigo"></p>
+  </div>
+  <div class="acciones-boleta">
+    <button class="btn-secundario" id="btn-descargar-boleta">Descargar boleta</button>
+    <button class="btn-primario" id="btn-wsp-boleta">Enviar WhatsApp</button>
+  </div>
+  <button class="btn-secundario" style="margin-top:10px;" onclick="location.href='rastreo.html'">Ir a rastrear pedido</button>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script>
+  try { firebase.initializeApp(firebaseConfig); var db = firebase.firestore(); } catch (e) { console.warn("Configura Firebase en js/firebase-config.js"); }
+</script>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script src="js/utils/theme.js"></script>
+<script src="js/utils/helpers.js"></script>
+<script src="js/utils/mis-pedidos.js"></script>
+<script src="js/components/icono-marca.js"></script>
+<script src="js/components/header.js"></script>
+<script src="js/data/preciosPersonalizado.js"></script>
+<script src="js/modules/boleta.js"></script>
+<script src="js/modules/catalogo.js"></script>
+<script src="js/modules/personalizacion.js"></script>
+<script>
+  renderHeader({ titulo: "Personalizar cuadro", mostrarVolver: true });
+  document.getElementById("confirmacion-icono").innerHTML = iconoAvionVC({ tamano: 44, color: "var(--color-acento)", conEstela: true });
+  document.getElementById("p-fecha").min = fechaMinimaEntrega();
+
+  const COLORES = ["#E9D8C3", "#D9C4A3", "#C7D9CF", "#B8CBD9", "#E3C9C9", "#16283F"];
+  document.getElementById("swatches-color").innerHTML = COLORES.map((c, i) => `
+    <button type="button" class="swatch ${i === 0 ? "activo" : ""}" style="background:${c}" onclick="seleccionarColor('${c}', this)"></button>
+  `).join("");
+
+  document.getElementById("opciones-tamano").innerHTML = PRECIOS_PERSONALIZADO.map((t, i) => `
+    <button type="button" class="chip-tamano ${i === 0 ? "activo" : ""}" onclick="seleccionarTamano('${t.tamano}', this)">${t.tamano} cm</button>
+  `).join("");
+
+  document.getElementById("opciones-presentacion").innerHTML = `
+    <button type="button" class="chip-presentacion activo" onclick="seleccionarPresentacion('bolsa', this)">
+      <span>Con bolsa</span><small>Más económico</small>
+    </button>
+    <button type="button" class="chip-presentacion" onclick="seleccionarPresentacion('caja', this)">
+      <span>Con caja</span><small>Presentación premium</small>
+    </button>
+  `;
+
+  function seleccionarTamano(tamano, btn) {
+    document.querySelectorAll(".chip-tamano").forEach(b => b.classList.remove("activo"));
+    btn.classList.add("activo");
+    actualizarTamano(tamano);
+  }
+  function seleccionarPresentacion(pres, btn) {
+    document.querySelectorAll(".chip-presentacion").forEach(b => b.classList.remove("activo"));
+    btn.classList.add("activo");
+    actualizarPresentacion(pres);
+  }
+
+  iniciarEscena3D();
+  actualizarTamano("20x20");
+</script>
+</body>
+</html>

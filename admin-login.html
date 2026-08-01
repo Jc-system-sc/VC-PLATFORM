@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vuelo Creativo — Acceso</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<div class="login-admin-wrap">
+  <div class="login-admin-icono" id="login-icono"></div>
+  <div class="login-admin-card">
+    <h2 class="login-admin-titulo">Panel administrativo</h2>
+    <form onsubmit="intentarLogin(event)">
+      <div class="campo">
+        <label>Usuario</label>
+        <input type="text" id="admin-usuario" required autocomplete="off">
+      </div>
+      <div class="campo">
+        <label>Contraseña</label>
+        <input type="password" id="admin-clave" required>
+      </div>
+      <p id="login-error">Usuario o contraseña incorrectos</p>
+      <button type="submit" class="btn-primario" style="margin-top:10px;">Ingresar</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/utils/helpers.js"></script>
+<script src="js/components/icono-marca.js"></script>
+<script src="js/data/admin-config.js"></script>
+<script src="js/modules/admin-auth.js"></script>
+<script>
+  document.getElementById("login-icono").innerHTML = iconoAvionVC({ tamano: 46, color: "#FFFFFF", conEstela: true });
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vuelo Creativo — Inicio</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#16283F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/animaciones.css">
+</head>
+<body>
+
+<div id="app-frame">
+  <header id="app-header"></header>
+
+  <main id="app-content">
+    <section style="padding:20px;">
+      <p class="texto-suave" style="color:var(--color-text-soft); margin-bottom:16px;">¿Qué te gustaría hacer hoy?</p>
+
+      <a href="personalizar.html" class="tarjeta-opcion">
+        <div>
+          <h3>Personalizar mi cuadro</h3>
+          <p class="texto-suave">Elige tamaño, color, iniciales y tu diseño ideal en 3D</p>
+        </div>
+      </a>
+
+      <a href="catalogo.html" class="tarjeta-opcion">
+        <div>
+          <h3>Ver catálogo</h3>
+          <p class="texto-suave">Modelos ya diseñados, listos para pedir</p>
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <nav id="bottom-nav"></nav>
+  <div id="mascota"></div>
+</div>
+
+<script src="js/utils/theme.js"></script>
+<script src="js/utils/helpers.js"></script>
+<script src="js/components/icono-marca.js"></script>
+<script src="js/components/header.js"></script>
+<script src="js/components/bottom-nav.js"></script>
+<script src="js/components/mascota.js"></script>
+<script>
+  renderHeader({ titulo: "Vuelo Creativo" });
+  renderBottomNav("inicio");
+  iniciarMascota([
+    "¡Hola! Soy tu guía ✈️",
+    "Toca 'Personalizar' para crear tu cuadro único",
+    "O revisa el catálogo si prefieres algo ya listo"
+  ]);
+</script>
+</body>
+</html>

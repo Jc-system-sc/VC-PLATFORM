@@ -1,0 +1,85 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--color-bg-alt);
+  font-family: var(--font-texto);
+  color: var(--color-text);
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Marco tipo teléfono, centrado */
+#app-frame {
+  max-width: var(--marco-max-width);
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--color-bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  box-shadow: var(--sombra);
+}
+
+.logo-texto {
+  font-family: var(--font-logo);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+}
+
+h1, h2, h3, .titulo {
+  font-family: var(--font-titulos);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.dato-critico {
+  color: var(--color-acento);
+  font-weight: 700;
+}
+
+button {
+  font-family: var(--font-texto);
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+/* Contenido scrollable entre header y nav inferior */
+#app-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 84px; /* espacio para nav inferior */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Header fijo */
+#app-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Barra de acción fija (ej. "Agregar al carrito") */
+.barra-accion {
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--marco-max-width);
+  padding: 12px 18px;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  z-index: 15;
+}
+
+::-webkit-scrollbar { width: 0; height: 0; }

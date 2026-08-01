@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vuelo Creativo — Ventas presenciales</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/animaciones.css">
+<link rel="stylesheet" href="css/catalogo.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<div id="app-frame">
+  <header id="app-header"></header>
+
+  <main id="app-content">
+    <div style="padding:18px;">
+
+      <div id="escaner-inicio" style="text-align:center; padding:30px 10px;">
+        <div id="icono-escaner" style="margin-bottom:12px;"></div>
+        <p class="texto-suave" style="margin-bottom:16px;">Escanea el código de barras del cuadro</p>
+        <button class="btn-primario" onclick="iniciarEscaner()" style="max-width:220px; margin:0 auto;">Activar cámara</button>
+      </div>
+
+      <div id="lector-qr" style="display:none; border-radius:var(--radio-sm); overflow:hidden; margin-bottom:16px;"></div>
+      <button class="btn-secundario" id="btn-detener" style="display:none; margin-bottom:16px;" onclick="detenerEscaner()">Detener cámara</button>
+
+      <form onsubmit="procesarCodigoManual(event)" style="display:flex; gap:8px; margin-bottom:20px;">
+        <input type="text" id="input-ean-manual" class="input-texto" placeholder="O ingresa el código manualmente" style="flex:1;">
+        <button type="submit" class="btn-secundario" style="width:auto; padding:0 16px;">Agregar</button>
+      </form>
+
+      <hr class="estela-separador">
+
+      <h3 style="margin-bottom:10px;">Venta activa</h3>
+      <div id="lista-venta-activa"></div>
+
+      <div class="fila-total">
+        <span>Total</span>
+        <span class="dato-critico" id="venta-total">S/ 0.00</span>
+      </div>
+
+      <button class="btn-primario" id="btn-cerrar-venta" onclick="abrirCierreVenta()" disabled>Cerrar venta</button>
+    </div>
+  </main>
+
+  <div id="toast"></div>
+</div>
+
+<!-- ===== SHEET: Cierre de venta ===== -->
+<div class="sheet-overlay" id="sheet-cierre-venta-overlay" onclick="cerrarSheetVentas('sheet-cierre-venta')"></div>
+<div class="sheet" id="sheet-cierre-venta">
+  <div class="sheet-handle"></div>
+  <h3>Datos del cliente</h3>
+  <form onsubmit="confirmarVentaPresencial(event)" style="margin-top:14px;">
+    <div class="campo">
+      <label>Nombre del cliente</label>
+      <input type="text" id="venta-cliente-nombre" required>
+    </div>
+    <div class="campo">
+      <label>WhatsApp (opcional, para enviar boleta)</label>
+      <input type="tel" id="venta-cliente-wsp" placeholder="9XXXXXXXX">
+    </div>
+    <button type="submit" class="btn-primario">Generar boleta</button>
+  </form>
+</div>
+
+<!-- ===== SHEET: Boleta generada ===== -->
+<div class="sheet-overlay" id="sheet-venta-lista-overlay"></div>
+<div class="sheet" id="sheet-venta-lista">
+  <div class="sheet-handle"></div>
+  <div class="confirmacion-icono" id="icono-venta-ok"></div>
+  <h3 style="text-align:center;">Venta registrada</h3>
+  <div class="acciones-boleta">
+    <button class="btn-secundario" id="btn-descargar-boleta-venta">Descargar boleta</button>
+    <button class="btn-primario" id="btn-wsp-boleta-venta">Enviar WhatsApp</button>
+  </div>
+  <button class="btn-secundario" style="margin-top:10px;" onclick="cerrarSheetVentas('sheet-venta-lista')">Nueva venta</button>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script>
+  try { firebase.initializeApp(firebaseConfig); var db = firebase.firestore(); } catch (e) { console.warn("Configura Firebase en js/firebase-config.js"); }
+</script>
+
+<!-- Lector EAN -->
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+
+<script src="js/utils/helpers.js"></script>
+<script src="js/components/icono-marca.js"></script>
+<script src="js/components/header.js"></script>
+<script src="js/data/admin-config.js"></script>
+<script src="js/data/tiposCuadro.js"></script>
+<script src="js/modules/admin-auth.js"></script>
+<script src="js/modules/boleta.js"></script>
+<script src="js/modules/ventas.js"></script>
+<script>
+  protegerPaginaAdmin();
+  renderHeader({ titulo: "Ventas presenciales", mostrarVolver: true });
+  document.getElementById("icono-escaner").innerHTML = iconoAvionVC({ tamano: 40, color: "var(--color-acento)" });
+  document.getElementById("icono-venta-ok").innerHTML = iconoAvionVC({ tamano: 40, color: "var(--color-acento)", conEstela: true });
+  renderVentaActiva();
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+/* ===== HERO ===== */
+.landing-hero {
+  text-align: center;
+  padding: 60px 24px 36px;
+  background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+}
+.hero-avion-wrap {
+  display: inline-flex;
+  animation: flotar 3.5s ease-in-out infinite;
+}
+.hero-titulo {
+  font-size: 2.1rem;
+  margin-top: 14px;
+  color: var(--color-marino);
+  letter-spacing: -0.01em;
+}
+.hero-tagline {
+  color: var(--color-text-soft);
+  margin-top: 8px;
+  font-size: 0.92rem;
+  padding: 0 14px;
+  line-height: 1.5;
+}
+.hero-btn { margin-top: 24px; max-width: 220px; }
+
+/* ===== SECCIONES ===== */
+.landing-seccion {
+  padding: 32px 24px;
+}
+.etiqueta-seccion {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-acento);
+  background: var(--color-bg-alt);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+.landing-seccion h2 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: var(--color-marino);
+}
+.texto-suave { color: var(--color-text-soft); font-size: 0.88rem; line-height: 1.55; }
+
+/* Revelado al hacer scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s var(--ease-avion);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Galería */
+.galeria-mini {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+}
+.galeria-item {
+  aspect-ratio: 1;
+  background: var(--color-bg-alt);
+  border-radius: var(--radio-sm);
+  border: 1px solid var(--color-border);
+}
+
+/* Pasos (cómo funciona) */
+.pasos { margin-top: 18px; display: flex; flex-direction: column; gap: 16px; }
+.paso {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radio-sm);
+  padding: 14px;
+}
+.paso-icono {
+  width: 40px; height: 40px;
+  flex-shrink: 0;
+  background: var(--color-bg-alt);
+  color: var(--color-acento);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+.paso-titulo { font-weight: 600; font-size: 0.92rem; color: var(--color-marino); margin-bottom: 2px; }
+
+/* Beneficios */
+.beneficios {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+.beneficio {
+  text-align: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radio-sm);
+  padding: 16px 8px;
+}
+.beneficio-icono {
+  display: inline-flex;
+  width: 38px; height: 38px;
+  align-items: center; justify-content: center;
+  background: var(--color-bg-alt);
+  color: var(--color-acento);
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
+.beneficio p { font-size: 0.74rem; color: var(--color-text-soft); line-height: 1.35; }
+
+.contador-social {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-text-soft);
+}
+.contador-social strong { color: var(--color-acento); font-family: var(--font-titulos); font-size: 1.15rem; }
+
+/* CTA final */
+.landing-cta {
+  text-align: center;
+  padding-bottom: 48px;
+  background: var(--color-bg-alt);
+}
+.cta-titulo { margin-bottom: 16px; }

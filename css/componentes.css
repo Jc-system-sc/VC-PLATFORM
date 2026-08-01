@@ -1,0 +1,179 @@
+/* ===== HEADER ===== */
+.titulo-header {
+  font-size: 1.05rem;
+  flex: 1;
+  text-align: center;
+}
+#btn-volver, .logo-mini {
+  color: var(--color-text);
+  width: 26px;
+}
+.header-extra { width: 26px; text-align: right; }
+
+/* ===== NAV INFERIOR con indicador líquido ===== */
+#bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--marco-max-width);
+  height: 74px;
+  background: var(--color-marino);
+  display: flex;
+  z-index: 30;
+  border-radius: 22px 22px 0 0;
+  box-shadow: 0 -6px 20px rgba(20,38,61,0.18);
+}
+.nav-indicador {
+  position: absolute;
+  top: 10px; left: 0;
+  width: 25%; height: 40px;
+  z-index: 0;
+}
+.nav-indicador::after {
+  content: "";
+  display: block;
+  width: 54px; height: 40px;
+  margin: 0 auto;
+  background: var(--color-acento);
+  border-radius: 14px;
+  transition: all var(--dur-media) var(--ease-avion);
+}
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-decoration: none;
+  color: #7C90A8;
+  font-size: 0.68rem;
+  font-weight: 500;
+  z-index: 1;
+  transition: color var(--dur-rapida), transform var(--dur-rapida);
+}
+.nav-item.activa {
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+/* ===== BOTONES ===== */
+.btn-primario {
+  width: 100%;
+  padding: 14px;
+  border-radius: var(--radio-sm);
+  background: var(--color-acento);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform var(--dur-rapida);
+}
+.btn-primario:active { transform: scale(0.97); }
+
+.btn-secundario {
+  width: 100%;
+  padding: 14px;
+  border-radius: var(--radio-sm);
+  background: var(--color-bg-alt);
+  color: var(--color-text);
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+}
+
+/* ===== MODAL TIPO SHEET (desliza desde abajo) ===== */
+.sheet-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-media);
+}
+.sheet-overlay.abierto { opacity: 1; pointer-events: all; }
+
+.sheet {
+  position: fixed;
+  bottom: 0; left: 50%;
+  transform: translate(-50%, 100%);
+  width: 100%;
+  max-width: var(--marco-max-width);
+  max-height: 85vh;
+  background: var(--color-surface);
+  border-radius: 24px 24px 0 0;
+  padding: 20px 18px 30px;
+  z-index: 51;
+  transition: transform var(--dur-media) var(--ease-avion);
+  overflow-y: auto;
+}
+.sheet.abierto { transform: translate(-50%, 0); }
+.sheet-handle {
+  width: 40px; height: 4px;
+  background: var(--color-border);
+  border-radius: 4px;
+  margin: 0 auto 16px;
+}
+
+/* ===== TARJETA DE OPCIÓN (Inicio) ===== */
+.tarjeta-opcion {
+  display: block;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radio);
+  padding: 18px;
+  margin-bottom: 14px;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: transform var(--dur-rapida);
+}
+.tarjeta-opcion:active { transform: scale(0.98); }
+.tarjeta-opcion h3 { font-size: 1rem; margin-bottom: 4px; }
+
+/* ===== MASCOTA GUÍA ===== */
+.mascota-avion {
+  position: fixed;
+  bottom: 94px; right: 16px;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--color-acento), var(--color-marino-suave));
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--sombra);
+  z-index: 40;
+  animation: flotar 3s ease-in-out infinite;
+}
+.mascota-burbuja {
+  position: fixed;
+  bottom: 142px; right: 16px;
+  max-width: 190px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radio-sm);
+  padding: 10px 12px;
+  font-size: 0.78rem;
+  box-shadow: var(--sombra);
+  z-index: 40;
+  opacity: 0;
+  transform: translateY(8px) scale(0.95);
+  pointer-events: none;
+  transition: all var(--dur-media);
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+.mascota-burbuja.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+#mascota-cerrar {
+  color: var(--color-text-soft);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vuelo Creativo — Rastrear pedido</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#16283F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/animaciones.css">
+<link rel="stylesheet" href="css/rastreo.css">
+</head>
+<body>
+
+<div id="app-frame">
+  <header id="app-header"></header>
+
+  <main id="app-content">
+    <div class="buscador-rastreo">
+      <p class="texto-suave" style="margin-bottom:12px;">Ingresa tu código de pedido para ver el estado</p>
+      <form onsubmit="buscarPedido(event)">
+        <input type="text" id="input-codigo" placeholder="VC-XXXXX" required>
+        <button type="submit" class="btn-buscar" aria-label="Buscar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <div id="cargando-rastreo">
+      <div class="avion-cargando" id="icono-cargando"></div>
+      <span>Buscando tu pedido...</span>
+    </div>
+
+    <div id="mensaje-no-encontrado">No encontramos un pedido con ese código. Revisa que esté bien escrito.</div>
+
+    <div id="resultado-pedido">
+      <div class="res-fila"><span>Código</span><span id="res-codigo"></span></div>
+      <div class="res-fila"><span>Cliente</span><span id="res-cliente"></span></div>
+      <div class="res-fila"><span>Entrega</span><span id="res-fecha"></span></div>
+      <div class="res-fila"><span>Total</span><span id="res-total" class="dato-critico"></span></div>
+
+      <div class="waypoints-cont">
+        <div class="waypoints" id="waypoints-rastreo">
+          <div class="avion-waypoint" id="avion-waypoint"></div>
+        </div>
+        <div id="labels-waypoints"></div>
+      </div>
+    </div>
+  </main>
+
+  <nav id="bottom-nav"></nav>
+  <div id="mascota"></div>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script>
+  try { firebase.initializeApp(firebaseConfig); var db = firebase.firestore(); } catch (e) { console.warn("Configura Firebase en js/firebase-config.js"); }
+</script>
+
+<script src="js/utils/theme.js"></script>
+<script src="js/utils/helpers.js"></script>
+<script src="js/components/icono-marca.js"></script>
+<script src="js/components/header.js"></script>
+<script src="js/components/bottom-nav.js"></script>
+<script src="js/components/mascota.js"></script>
+<script src="js/modules/rastreo.js"></script>
+<script>
+  renderHeader({ titulo: "Rastrear pedido" });
+  renderBottomNav("rastreo");
+  document.getElementById("icono-cargando").innerHTML = iconoAvionVC({ tamano: 28, color: "var(--color-acento)" });
+  iniciarMascota([
+    "Ingresa el código que recibiste al confirmar tu pedido",
+    "El avioncito te muestra en qué etapa va tu cuadro"
+  ]);
+
+  const parametros = new URLSearchParams(location.search);
+  const codigoURL = parametros.get("codigo");
+  if (codigoURL) {
+    document.getElementById("input-codigo").value = codigoURL;
+    buscarPedido(null);
+  }
+</script>
+</body>
+</html>

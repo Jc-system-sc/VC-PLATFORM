@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vuelo Creativo — Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/componentes.css">
+<link rel="stylesheet" href="css/animaciones.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<div id="app-frame">
+  <div class="admin-topbar">
+    <h1>Panel — Vuelo Creativo</h1>
+    <button class="btn-logout" onclick="cerrarSesionAdmin()">Salir</button>
+  </div>
+
+  <main id="app-content" style="padding-bottom:30px;">
+    <a href="ventas.html" class="acceso-ventas">Ventas presenciales (escanear código)</a>
+
+    <div class="admin-tabs" id="admin-tabs"></div>
+
+    <div id="admin-cargando" style="display:flex; flex-direction:column; align-items:center; padding:30px; gap:10px; color:var(--color-text-soft); font-size:0.85rem;">
+      <div class="skeleton-avion" id="icono-cargando-admin"></div>
+      <span>Cargando pedidos...</span>
+    </div>
+
+    <div id="admin-lista" class="admin-lista"></div>
+  </main>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script>
+  try { firebase.initializeApp(firebaseConfig); var db = firebase.firestore(); } catch (e) { console.warn("Configura Firebase en js/firebase-config.js"); }
+</script>
+
+<script src="js/utils/helpers.js"></script>
+<script src="js/components/icono-marca.js"></script>
+<script src="js/data/admin-config.js"></script>
+<script src="js/modules/admin-auth.js"></script>
+<script src="js/modules/admin.js"></script>
+<script>
+  protegerPaginaAdmin();
+  document.getElementById("icono-cargando-admin").innerHTML = iconoAvionVC({ tamano: 30, color: "var(--color-acento)" });
+  renderTabsAdmin();
+  cargarPedidos();
+</script>
+</body>
+</html>

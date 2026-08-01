@@ -1,0 +1,116 @@
+/* ===== SPLASH SCREEN: avión girando dejando estela ===== */
+#splash {
+  position: fixed; inset: 0;
+  background: var(--color-bg);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 100;
+  transition: opacity 0.4s, visibility 0.4s;
+}
+#splash.oculto { opacity: 0; visibility: hidden; }
+
+.splash-avion {
+  animation: girar-avion 1.9s var(--ease-avion) infinite;
+}
+@keyframes girar-avion {
+  0%   { transform: rotate(0deg) translate(0, 0); }
+  50%  { transform: rotate(180deg) translate(6px, -4px); }
+  100% { transform: rotate(360deg) translate(0, 0); }
+}
+.splash-marca {
+  margin-top: 16px;
+  font-family: var(--font-logo);
+  font-weight: 600;
+  font-size: 1.35rem;
+  letter-spacing: 0.01em;
+  color: var(--color-marino);
+}
+
+/* ===== ESTELA punteada (elemento gráfico recurrente) ===== */
+.estela-separador {
+  border: none;
+  border-top: 2px dashed var(--color-border);
+  margin: 16px 0;
+}
+
+/* ===== Transición entre páginas: avión cruza pantalla ===== */
+#transicion-avion {
+  position: fixed;
+  top: 50%; left: -60px;
+  transform: translateY(-50%);
+  z-index: 200;
+  color: var(--color-acento);
+  pointer-events: none;
+  opacity: 0;
+}
+#transicion-avion.activa {
+  animation: cruzar-pantalla 0.6s ease-in-out forwards;
+}
+@keyframes cruzar-pantalla {
+  0%   { left: -60px; opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { left: 110%; opacity: 0; }
+}
+
+/* ===== Waypoints de vuelo (progreso de personalización / rastreo) ===== */
+.waypoints {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin: 24px 0;
+}
+.waypoints::before {
+  content: "";
+  position: absolute;
+  top: 10px; left: 5%; right: 5%;
+  border-top: 2px dashed var(--color-border);
+  z-index: 0;
+}
+.waypoint {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--dur-media);
+}
+.waypoint.activo {
+  border-color: var(--color-acento);
+  background: var(--color-acento);
+}
+.waypoint.completado {
+  border-color: var(--color-exito);
+  background: var(--color-exito);
+}
+.avion-waypoint {
+  position: absolute;
+  top: -6px;
+  transition: left 0.6s var(--ease-avion);
+  color: var(--color-acento);
+}
+
+/* ===== Skeleton loading con forma de avioncito ===== */
+.skeleton-avion {
+  opacity: 0.3;
+  animation: pulso 1.2s ease-in-out infinite;
+}
+@keyframes pulso {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.5; }
+}
+
+/* ===== Confeti/estela al confirmar pedido ===== */
+.confeti-particula {
+  position: fixed;
+  top: -10px;
+  width: 6px; height: 10px;
+  background: var(--color-acento-suave);
+  animation: caer 1.6s ease-in forwards;
+  z-index: 90;
+}
+@keyframes caer {
+  to { transform: translateY(100vh) rotate(340deg); opacity: 0; }
+}
