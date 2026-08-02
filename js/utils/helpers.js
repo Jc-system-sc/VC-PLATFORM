@@ -22,10 +22,10 @@ function vibrar(ms = 15) {
 }
 
 /* Oculta el splash screen tras cargar */
-function ocultarSplash() {
+function ocultarSplash(esperaMs = 900) {
   const splash = document.getElementById("splash");
   if (!splash) return;
-  setTimeout(() => splash.classList.add("oculto"), 900);
+  setTimeout(() => splash.classList.add("oculto"), esperaMs);
 }
 
 /* Registro del service worker */

@@ -1,44 +1,51 @@
-/* ===== VUELO CREATIVO — Variables de marca (v2) ===== */
+/* ===== VUELO CREATIVO — Variables de marca (v3) ===== */
 :root {
-  /* Paleta: azul marino + verde + blanco */
-  --color-bg: #F6FAF9;
-  --color-bg-alt: #EAF3F1;
+  /* Paleta: azul marino + verde + blanco, con acento cálido decorativo */
+  --color-bg: #F5F9F8;
+  --color-bg-alt: #E9F1EF;
   --color-surface: #FFFFFF;
   --color-text: #14263D;
-  --color-text-soft: #6B7C8C;
-  --color-border: #DCE7E4;
+  --color-text-soft: #66798C;
+  --color-border: #DCE8E5;
 
   /* Marino (identidad / headers) */
-  --color-marino: #16283F;
-  --color-marino-suave: #2C4460;
+  --color-marino: #142943;
+  --color-marino-2: #1E3A5C;
+  --color-marino-suave: #2C4763;
 
-  /* Color fuerte reservado SOLO para el dato crítico (precio/total) */
-  --color-acento: #2E8B7F;
+  /* Verde — dato crítico (precio/total) */
+  --color-acento: #248A78;
+  --color-acento-2: #1B6E5F;
   --color-acento-suave: #6FBDAF;
 
+  /* Dorado cálido — SOLO decorativo (detalles, no precios) */
+  --color-dorado: #D9A441;
+  --color-dorado-suave: #F0D9A8;
+
   /* Estados */
-  --color-exito: #2E8B7F;
+  --color-exito: #248A78;
   --color-alerta: #D9A441;
-  --color-error: #C6693B;
+  --color-error: #C0563C;
 
   /* Modo oscuro */
-  --dark-bg: #0F1C2E;
-  --dark-bg-alt: #16283F;
-  --dark-surface: #1C3049;
+  --dark-bg: #0D1826;
+  --dark-bg-alt: #142943;
+  --dark-surface: #182E48;
   --dark-text: #EAF3F1;
-  --dark-text-soft: #9BB0C2;
-  --dark-border: #29405C;
+  --dark-text-soft: #93A9BE;
+  --dark-border: #24405C;
 
-  /* Tipografía — amigable y dinámica */
-  --font-logo: 'Baloo 2', 'Quicksand', sans-serif;
-  --font-titulos: 'Baloo 2', sans-serif;
-  --font-texto: 'Inter', sans-serif;
+  /* Tipografía — con personalidad propia */
+  --font-logo: 'Fraunces', serif;
+  --font-titulos: 'Fraunces', serif;
+  --font-texto: 'Plus Jakarta Sans', sans-serif;
 
   /* Layout */
   --marco-max-width: 430px;
-  --radio: 20px;
-  --radio-sm: 12px;
-  --sombra: 0 6px 24px rgba(20, 38, 61, 0.08);
+  --radio: 22px;
+  --radio-sm: 14px;
+  --sombra: 0 8px 28px rgba(20, 38, 61, 0.10);
+  --sombra-fuerte: 0 14px 36px rgba(20, 38, 61, 0.16);
 
   /* Animación */
   --ease-avion: cubic-bezier(0.34, 1.56, 0.64, 1);

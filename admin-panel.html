@@ -6,7 +6,7 @@
 <title>Vuelo Creativo — Admin</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/variables.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/componentes.css">
@@ -24,6 +24,10 @@
   <main id="app-content" style="padding-bottom:30px;">
     <a href="ventas.html" class="acceso-ventas">Ventas presenciales (escanear código)</a>
 
+    <button class="btn-secundario" style="margin:12px 16px 0; width:calc(100% - 32px);" onclick="exportarPedidosExcel()">Exportar pedidos a Excel</button>
+
+    <div class="admin-stats" id="admin-stats"></div>
+
     <div class="admin-tabs" id="admin-tabs"></div>
 
     <div id="admin-cargando" style="display:flex; flex-direction:column; align-items:center; padding:30px; gap:10px; color:var(--color-text-soft); font-size:0.85rem;">
@@ -33,6 +37,21 @@
 
     <div id="admin-lista" class="admin-lista"></div>
   </main>
+  <div id="toast"></div>
+</div>
+
+<!-- ===== SHEET: Motivo de rechazo ===== -->
+<div class="sheet-overlay" id="sheet-rechazo-overlay" onclick="cerrarSheetVentas('sheet-rechazo')"></div>
+<div class="sheet" id="sheet-rechazo">
+  <div class="sheet-handle"></div>
+  <h3>Motivo del rechazo</h3>
+  <form onsubmit="confirmarRechazo(event)" style="margin-top:14px;">
+    <div class="campo">
+      <label>¿Por qué no se puede procesar este pedido?</label>
+      <input type="text" id="input-motivo-rechazo" placeholder="Ej: fecha no disponible">
+    </div>
+    <button type="submit" class="btn-secundario" style="border-color:var(--color-error); color:var(--color-error);">Rechazar pedido</button>
+  </form>
 </div>
 
 <!-- Firebase -->
@@ -43,11 +62,14 @@
   try { firebase.initializeApp(firebaseConfig); var db = firebase.firestore(); } catch (e) { console.warn("Configura Firebase en js/firebase-config.js"); }
 </script>
 
+<script src="https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
 <script src="js/utils/helpers.js"></script>
 <script src="js/components/icono-marca.js"></script>
 <script src="js/data/admin-config.js"></script>
 <script src="js/modules/admin-auth.js"></script>
 <script src="js/modules/admin.js"></script>
+<script src="js/modules/exportar-excel.js"></script>
 <script>
   protegerPaginaAdmin();
   document.getElementById("icono-cargando-admin").innerHTML = iconoAvionVC({ tamano: 30, color: "var(--color-acento)" });

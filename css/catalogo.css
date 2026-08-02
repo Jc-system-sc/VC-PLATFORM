@@ -11,7 +11,19 @@
   border-radius: var(--radio-sm);
   padding: 10px;
   text-align: left;
+  box-shadow: var(--sombra);
   transition: transform var(--dur-rapida);
+  animation: tarjeta-aparece 0.45s ease both;
+}
+.tarjeta-catalogo:nth-child(1) { animation-delay: 0.05s; }
+.tarjeta-catalogo:nth-child(2) { animation-delay: 0.1s; }
+.tarjeta-catalogo:nth-child(3) { animation-delay: 0.15s; }
+.tarjeta-catalogo:nth-child(4) { animation-delay: 0.2s; }
+.tarjeta-catalogo:nth-child(5) { animation-delay: 0.25s; }
+.tarjeta-catalogo:nth-child(6) { animation-delay: 0.3s; }
+@keyframes tarjeta-aparece {
+  from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 .tarjeta-catalogo:active { transform: scale(0.97); }
 .tarjeta-imagen {

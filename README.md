@@ -10,10 +10,17 @@ panel admin (pedidos + estado + WhatsApp), ventas presenciales (escaneo EAN) y p
 - Modo oscuro
 
 ### Acceso admin
-- URL: `admin-login.html` (no está enlazada desde ninguna página pública — solo tú conoces la ruta)
+- **Gesto secreto:** toca 5 veces rápido (menos de 2 segundos entre toques) el avioncito del logo — en el header de Inicio/Catálogo/Pedidos/Más, o en el ícono del hero del landing. Te redirige a `admin-login.html`. No hay ningún botón visible.
 - Usuario/clave editables en `js/data/admin-config.js`
 - Sesión con `sessionStorage` (se cierra al cerrar el navegador)
 - Desde el panel (`admin-panel.html`) se accede a "Ventas presenciales" (`ventas.html`)
+
+### Flujo de aceptación de pedidos
+Todo pedido nuevo entra con estado **"Por revisar"**. El cliente ve "tu pedido está en revisión" en la confirmación.
+Desde el panel admin puedes **Aceptar** (pasa a "Confirmado" y sigue el flujo normal) o **Rechazar** (con motivo, que se le envía al cliente por WhatsApp automáticamente).
+
+### Exportar a Excel
+Botón "Exportar pedidos a Excel" en el panel admin — descarga un `.xlsx` con todos los datos de cada pedido (cliente, personalización completa, pago, estado, etc.), útil como respaldo además de Firestore.
 
 **Pendiente (opcional / fase 2):** notificaciones push reales con Firebase Cloud Messaging (la base ya está en `service-worker.js`, falta la Cloud Function que las dispare).
 

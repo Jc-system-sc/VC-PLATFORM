@@ -1,55 +1,99 @@
 /* ===== HERO ===== */
 .landing-hero {
   text-align: center;
-  padding: 60px 24px 36px;
-  background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+  padding: 64px 24px 40px;
+  position: relative;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(36,138,120,0.08), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(217,164,65,0.10), transparent 40%),
+    linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+  overflow: hidden;
+}
+.landing-hero::before {
+  content: "";
+  position: absolute;
+  top: 18px; left: 50%;
+  width: 300px; height: 300px;
+  transform: translateX(-50%);
+  border: 1.5px dashed rgba(20,38,61,0.10);
+  border-radius: 50%;
+  pointer-events: none;
 }
 .hero-avion-wrap {
   display: inline-flex;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
   animation: flotar 3.5s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
 }
 .hero-titulo {
-  font-size: 2.1rem;
-  margin-top: 14px;
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-top: 16px;
   color: var(--color-marino);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+  position: relative;
+  z-index: 1;
 }
 .hero-tagline {
   color: var(--color-text-soft);
-  margin-top: 8px;
-  font-size: 0.92rem;
-  padding: 0 14px;
-  line-height: 1.5;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  padding: 0 20px;
+  line-height: 1.55;
+  position: relative;
+  z-index: 1;
 }
-.hero-btn { margin-top: 24px; max-width: 220px; }
+.hero-btn {
+  margin-top: 26px;
+  max-width: 230px;
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--sombra-fuerte);
+}
 
 /* ===== SECCIONES ===== */
 .landing-seccion {
-  padding: 32px 24px;
+  padding: 36px 24px;
 }
 .etiqueta-seccion {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--color-acento);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-acento-2);
   background: var(--color-bg-alt);
-  padding: 4px 12px;
+  padding: 5px 14px 5px 10px;
   border-radius: 20px;
-  margin-bottom: 10px;
-  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.etiqueta-seccion::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--color-dorado);
+  display: inline-block;
 }
 .landing-seccion h2 {
-  font-size: 1.3rem;
-  margin-bottom: 8px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
   color: var(--color-marino);
+  letter-spacing: -0.01em;
 }
-.texto-suave { color: var(--color-text-soft); font-size: 0.88rem; line-height: 1.55; }
+.texto-suave { color: var(--color-text-soft); font-size: 0.89rem; line-height: 1.6; }
 
 /* Revelado al hacer scroll */
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.6s ease, transform 0.6s var(--ease-avion);
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s var(--ease-avion);
 }
 .reveal.visible {
   opacity: 1;
@@ -61,73 +105,83 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  margin-top: 16px;
+  margin-top: 18px;
 }
 .galeria-item {
   aspect-ratio: 1;
-  background: var(--color-bg-alt);
+  background: linear-gradient(150deg, var(--color-bg-alt), var(--color-surface));
   border-radius: var(--radio-sm);
   border: 1px solid var(--color-border);
+  box-shadow: var(--sombra);
 }
 
 /* Pasos (cómo funciona) */
-.pasos { margin-top: 18px; display: flex; flex-direction: column; gap: 16px; }
+.pasos { margin-top: 20px; display: flex; flex-direction: column; gap: 14px; }
 .paso {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 15px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radio-sm);
-  padding: 14px;
+  padding: 16px;
+  box-shadow: var(--sombra);
+  transition: transform var(--dur-rapida);
 }
+.paso:hover { transform: translateY(-2px); }
 .paso-icono {
-  width: 40px; height: 40px;
+  width: 44px; height: 44px;
   flex-shrink: 0;
-  background: var(--color-bg-alt);
-  color: var(--color-acento);
-  border-radius: 12px;
+  background: linear-gradient(150deg, var(--color-acento), var(--color-acento-2));
+  color: #fff;
+  border-radius: 14px;
   display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(36,138,120,0.28);
 }
-.paso-titulo { font-weight: 600; font-size: 0.92rem; color: var(--color-marino); margin-bottom: 2px; }
+.paso-titulo { font-family: var(--font-titulos); font-weight: 600; font-size: 1rem; color: var(--color-marino); margin-bottom: 2px; }
 
 /* Beneficios */
 .beneficios {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
-  margin-top: 16px;
+  margin-top: 18px;
 }
 .beneficio {
   text-align: center;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radio-sm);
-  padding: 16px 8px;
+  padding: 18px 8px;
+  box-shadow: var(--sombra);
 }
 .beneficio-icono {
   display: inline-flex;
-  width: 38px; height: 38px;
+  width: 42px; height: 42px;
   align-items: center; justify-content: center;
-  background: var(--color-bg-alt);
-  color: var(--color-acento);
+  background: linear-gradient(150deg, var(--color-dorado-suave), var(--color-bg-alt));
+  color: var(--color-dorado);
   border-radius: 50%;
-  margin-bottom: 8px;
+  margin-bottom: 9px;
 }
-.beneficio p { font-size: 0.74rem; color: var(--color-text-soft); line-height: 1.35; }
+.beneficio p { font-size: 0.74rem; color: var(--color-text-soft); line-height: 1.4; font-weight: 500; }
 
 .contador-social {
-  margin-top: 20px;
+  margin-top: 22px;
   text-align: center;
   font-size: 0.85rem;
   color: var(--color-text-soft);
 }
-.contador-social strong { color: var(--color-acento); font-family: var(--font-titulos); font-size: 1.15rem; }
+.contador-social strong { color: var(--color-acento); font-family: var(--font-titulos); font-size: 1.3rem; display: block; margin-bottom: 2px; }
 
 /* CTA final */
 .landing-cta {
   text-align: center;
-  padding-bottom: 48px;
-  background: var(--color-bg-alt);
+  padding: 44px 24px 52px;
+  background: linear-gradient(165deg, var(--color-marino) 0%, var(--color-marino-2) 100%);
 }
-.cta-titulo { margin-bottom: 16px; }
+.cta-titulo { margin-bottom: 18px; color: #fff; font-size: 1.4rem; }
+.landing-cta .btn-primario {
+  background: linear-gradient(135deg, var(--color-acento), var(--color-acento-2));
+  box-shadow: var(--sombra-fuerte);
+}

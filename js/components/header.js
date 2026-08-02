@@ -8,7 +8,7 @@ function renderHeader({ titulo = "Vuelo Creativo", mostrarVolver = false, accion
   header.innerHTML = `
     ${mostrarVolver
       ? `<button id="btn-volver" aria-label="Volver">${iconoFlecha()}</button>`
-      : `<span class="logo-mini">${iconoAvionVC({ tamano: 24, color: "var(--color-acento)" })}</span>`}
+      : `<button id="logo-marca-secreto" class="logo-mini" aria-label="Vuelo Creativo">${iconoAvionVC({ tamano: 24, color: "var(--color-acento)" })}</button>`}
     <h1 class="titulo-header">${titulo}</h1>
     <span class="header-extra">${accionExtra}</span>
   `;

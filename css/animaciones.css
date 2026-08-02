@@ -9,21 +9,55 @@
 }
 #splash.oculto { opacity: 0; visibility: hidden; }
 
-.splash-avion {
-  animation: girar-avion 1.9s var(--ease-avion) infinite;
+.splash-svg {
+  overflow: visible;
 }
-@keyframes girar-avion {
-  0%   { transform: rotate(0deg) translate(0, 0); }
-  50%  { transform: rotate(180deg) translate(6px, -4px); }
-  100% { transform: rotate(360deg) translate(0, 0); }
+.trail-path {
+  stroke: var(--color-acento);
+  stroke-width: 2.2;
+  stroke-dasharray: 14 10;
+  stroke-dashoffset: 1000;
+  animation:
+    dibujar-ruta 1.7s ease-out forwards,
+    ruta-desvanecer 1s ease-in forwards 2s;
 }
+@keyframes dibujar-ruta {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes ruta-desvanecer {
+  to { opacity: 0; }
+}
+
+.avion-grupo {
+  animation: avion-desvanecer 0.5s ease-in forwards 1.6s;
+}
+.avion-relleno {
+  fill: var(--color-acento);
+  stroke: var(--color-marino);
+}
+@keyframes avion-desvanecer {
+  to { opacity: 0; transform: scale(0.6); }
+}
+
 .splash-marca {
-  margin-top: 16px;
+  margin-top: 4px;
   font-family: var(--font-logo);
   font-weight: 600;
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   letter-spacing: 0.01em;
   color: var(--color-marino);
+  opacity: 0;
+  animation: marca-aparece 0.9s var(--ease-avion) forwards 1.9s;
+}
+@keyframes marca-aparece {
+  from { opacity: 0; transform: translateY(14px) scale(0.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Usado en loading spinners (ej. rastreo de pedido) */
+@keyframes girar-avion {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* ===== ESTELA punteada (elemento gráfico recurrente) ===== */

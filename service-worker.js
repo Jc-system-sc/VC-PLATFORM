@@ -25,6 +25,7 @@ const ARCHIVOS_BASE = [
   "js/utils/theme.js",
   "js/utils/iconos-landing.js",
   "js/utils/mis-pedidos.js",
+  "js/utils/acceso-secreto.js",
   "js/modules/carrito.js",
   "js/modules/boleta.js",
   "js/modules/catalogo.js",

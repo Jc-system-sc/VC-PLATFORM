@@ -1,12 +1,20 @@
 /* ===== HEADER ===== */
 .titulo-header {
-  font-size: 1.05rem;
+  font-family: var(--font-titulos);
+  font-weight: 600;
+  font-size: 1.12rem;
   flex: 1;
   text-align: center;
 }
 #btn-volver, .logo-mini {
   color: var(--color-text);
   width: 26px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 .header-extra { width: 26px; text-align: right; }
 
@@ -62,25 +70,28 @@
 /* ===== BOTONES ===== */
 .btn-primario {
   width: 100%;
-  padding: 14px;
+  padding: 15px;
   border-radius: var(--radio-sm);
-  background: var(--color-acento);
+  background: linear-gradient(135deg, var(--color-acento), var(--color-acento-2));
   color: #fff;
   font-weight: 600;
   font-size: 0.95rem;
-  transition: transform var(--dur-rapida);
+  box-shadow: 0 6px 18px rgba(36,138,120,0.28);
+  transition: transform var(--dur-rapida), box-shadow var(--dur-rapida);
 }
-.btn-primario:active { transform: scale(0.97); }
+.btn-primario:active { transform: scale(0.97); box-shadow: 0 3px 10px rgba(36,138,120,0.24); }
 
 .btn-secundario {
   width: 100%;
-  padding: 14px;
+  padding: 15px;
   border-radius: var(--radio-sm);
   background: var(--color-bg-alt);
-  color: var(--color-text);
+  color: var(--color-marino);
   font-weight: 600;
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
+  transition: transform var(--dur-rapida);
 }
+.btn-secundario:active { transform: scale(0.97); }
 
 /* ===== MODAL TIPO SHEET (desliza desde abajo) ===== */
 .sheet-overlay {
@@ -121,14 +132,27 @@
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radio);
-  padding: 18px;
+  padding: 20px;
   margin-bottom: 14px;
   text-decoration: none;
   color: var(--color-text);
-  transition: transform var(--dur-rapida);
+  box-shadow: var(--sombra);
+  transition: transform var(--dur-rapida), box-shadow var(--dur-rapida);
+  position: relative;
+  overflow: hidden;
 }
-.tarjeta-opcion:active { transform: scale(0.98); }
-.tarjeta-opcion h3 { font-size: 1rem; margin-bottom: 4px; }
+.tarjeta-opcion::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0;
+  width: 80px; height: 80px;
+  background: radial-gradient(circle, var(--color-bg-alt), transparent 70%);
+  border-radius: 50%;
+  transform: translate(20px, -20px);
+}
+.tarjeta-opcion:active { transform: scale(0.98); box-shadow: var(--sombra); }
+.tarjeta-opcion h3 { font-family: var(--font-titulos); font-size: 1.1rem; margin-bottom: 5px; color: var(--color-marino); position: relative; }
+.tarjeta-opcion p { position: relative; }
 
 /* ===== MASCOTA GUÍA ===== */
 .mascota-avion {

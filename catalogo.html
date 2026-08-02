@@ -7,7 +7,7 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#16283F">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/variables.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/componentes.css">
@@ -132,6 +132,7 @@
 <script src="js/utils/helpers.js"></script>
 <script src="js/utils/mis-pedidos.js"></script>
 <script src="js/components/icono-marca.js"></script>
+<script src="js/utils/acceso-secreto.js"></script>
 <script src="js/components/header.js"></script>
 <script src="js/components/bottom-nav.js"></script>
 <script src="js/components/mascota.js"></script>
@@ -148,6 +149,7 @@
     </button>`
   });
   renderBottomNav("catalogo");
+  activarAccesoSecreto("logo-marca-secreto");
   document.getElementById("confirmacion-icono").innerHTML = iconoAvionVC({ tamano: 44, color: "var(--color-acento)", conEstela: true });
   renderCatalogo();
   iniciarMascota([

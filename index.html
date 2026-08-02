@@ -7,7 +7,7 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#16283F">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/variables.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/componentes.css">
@@ -16,10 +16,20 @@
 </head>
 <body>
 
-<!-- Splash screen -->
+<!-- Splash screen: el avioncito vuela, hace un par de loops dejando su estela, y desaparece -->
 <div id="splash">
-  <div class="splash-avion" id="splash-avion"></div>
-  <p class="splash-marca">Vuelo Creativo</p>
+  <svg viewBox="0 0 320 200" width="250" height="156" class="splash-svg" aria-hidden="true">
+    <path id="ruta-vuelo" pathLength="1000"
+      d="M15,150 C55,150 55,58 108,58 C158,58 158,150 108,150 C68,150 68,88 108,88 C150,88 178,52 228,36 C266,24 286,28 306,14"
+      fill="none" class="trail-path" stroke-linecap="round"/>
+    <g class="avion-grupo">
+      <path d="M29.5 3.5 L2.5 14.5 L13 17.5 L15.5 28.5 L18.7 21 L23.5 25 L29.5 3.5 Z"
+        class="avion-relleno" stroke-linejoin="round" stroke-width="1" transform="translate(-16,-16) scale(0.9)"/>
+      <animateMotion dur="1.7s" fill="freeze" rotate="auto"
+        path="M15,150 C55,150 55,58 108,58 C158,58 158,150 108,150 C68,150 68,88 108,88 C150,88 178,52 228,36 C266,24 286,28 306,14"/>
+    </g>
+  </svg>
+  <p class="splash-marca" id="splash-marca">Vuelo Creativo</p>
 </div>
 
 <div id="app-frame">
@@ -27,7 +37,7 @@
 
     <!-- 1. HERO -->
     <section class="landing-hero">
-      <div class="hero-avion-wrap" id="hero-avion"></div>
+      <button class="hero-avion-wrap" id="hero-avion" aria-label="Vuelo Creativo"></button>
       <h1 class="logo-texto hero-titulo">Vuelo Creativo</h1>
       <p class="hero-tagline">Cuadros decorativos en hilorama, hechos a tu medida</p>
       <button class="btn-primario hero-btn" onclick="location.href='app.html'">Empezar</button>
@@ -106,12 +116,13 @@
 <script src="js/components/icono-marca.js"></script>
 <script src="js/utils/helpers.js"></script>
 <script src="js/utils/iconos-landing.js"></script>
+<script src="js/utils/acceso-secreto.js"></script>
 <script>
-  document.getElementById("splash-avion").innerHTML = iconoAvionVC({ tamano: 58, color: "#2E8B7F", conEstela: true });
   document.getElementById("hero-avion").innerHTML = iconoAvionVC({ tamano: 64, color: "#2E8B7F", conEstela: true });
   pintarIconosLanding();
-  ocultarSplash();
+  ocultarSplash(3000);
   activarRevelado();
+  activarAccesoSecreto("hero-avion");
 </script>
 </body>
 </html>
