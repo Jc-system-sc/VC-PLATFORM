@@ -193,6 +193,8 @@ function cerrarSheetVentas(id) {
   document.getElementById(id).classList.remove("abierto");
   document.getElementById(id + "-overlay").classList.remove("abierto");
 }
+
+async function actualizarEstadoPedido(id, nuevoEstado) {
   try {
     if (typeof db !== "undefined") {
       await db.collection("pedidos").doc(id).update({ estado: nuevoEstado });
